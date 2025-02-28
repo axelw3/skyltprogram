@@ -1,0 +1,14 @@
+{
+    "name": "skyltprogram",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "build": "tsc && ncp public/ dist/"
+    },
+    "author": "axelw3",
+    "license": "AGPL-3.0-or-later",
+    "devDependencies": {
+        "ncp": "^2.0.0",
+        "typescript": "^5.8.2"
+    }
+}

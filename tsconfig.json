@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+        /* Language and Environment */
+        "target": "es2017",
+        "noLib": false,
+
+        /* Modules */
+        "module": "es6",
+        "rootDir": ".",
+
+        /* Emit */
+        "outDir": "./dist",
+        "removeComments": true,
+
+        /* Interop Constraints */
+        "esModuleInterop": false,
+        "forceConsistentCasingInFileNames": true,
+
+        /* Type Checking */
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictPropertyInitialization": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noUncheckedIndexedAccess": false,
+        "noImplicitOverride": true
+    },
+    "files": ["./packages/skyltrendering/src/browser.ts", "./src/render.ts"],
+    "include": ["./src/**.ts", "./packages/skyltrendering/src/**.ts"],
+    "exclude": ["./packages/skyltrendering/src/main.ts"]
+}
