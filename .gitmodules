@@ -1,0 +1,3 @@
+[submodule "packages/skyltrendering"]
+	path = packages/skyltrendering
+	url = https://github.com/axelw3/skyltrendering
