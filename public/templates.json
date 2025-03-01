@@ -146,5 +146,9 @@
     {
         "name": "J2. Upplysningsmärke, Transportstyrelsens exempel",
         "json": {"type":"skylt","properties":{"background":"#fd0","color":"black","borderWidth":4,"font":"\"TratexVersal\"","padding":8,"alignContents":"center","lineSpacing":0},"elements":[{"type":"text","properties":{"value":"VÄGSALTNING"}},{"type":"newline"},{"type":"text","properties":{"value":"UPPHÖR"}}]}
+    },
+    {
+        "name": "J2. Upplysningsmärke, vattenskyddsområde",
+        "json": {"type":"skylt","properties":{"background":"#fd0","color":"#348","borderWidth":4,"font":"\"Tratex\"","padding":0,"lineSpacing":0,"borderFeatures":{"overlay":"slash"}},"elements":[{"type":"skylt","properties":{"color":"#aaa","padding":8,"alignContents":"center"},"elements":[{"type":"text","properties":{"font":"\"TratexVersal\"","value":"VÄTTERN"}},{"type":"newline"},{"type":"text","properties":{"value":"Vattenskyddsområde"}},{"type":"newline"},{"type":"text","properties":{"value":"Water protection area"}}]}]}
     }
 ]

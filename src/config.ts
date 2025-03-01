@@ -1,4 +1,6 @@
-export default {
+import {UserConfigData} from "../packages/skyltrendering/src/typedefs.js"
+
+const CONFIG: UserConfigData = {
     "signTypes": {
         "junction": {
             "width": 120,
@@ -72,18 +74,21 @@ export default {
         "h28": { "width": 40, "height": [40, 40] }
     },
     "borderFeatures": {
-        "bracket": { "paths": [{ "p": "M-${bw/2},0H0L22,27L44,0H${bw/2+w}", "s": 1, "f": 2 }], "w": 44, "h": 27, "cover": false },
-        "arrow": { "paths": [{ "p": "M0,0V${h}H${w}V0z", "f": -2, "s": -2 }, { "p": "M0,0L${w/2},${h*17/27}L${w},0z", "f": 2 }, { "p": "M0,-${bw/2}V0L${w/2},${h*17/27}L${w},0V-${bw/2}V0L${w/2},${h*25/27}L0,0z", "s": 1, "f": 1 }], "w": 0, "h": "w*27/44", "cover": true },
+        "bracket": { "paths": [{ "p": "M-${bw/2},0H0L22,27L44,0H${bw/2+w}", "s": 1, "f": 2 }], "w": 44, "h": 27 },
+        "arrow": { "paths": [{ "p": "M0,0V${h}H${w}V0z", "f": -2, "s": -2 }, { "p": "M0,0L${w/2},${h*17/27}L${w},0z", "f": 2 }, { "p": "M0,-${bw/2}V0L${w/2},${h*17/27}L${w},0V-${bw/2}V0L${w/2},${h*25/27}L0,0z", "s": 1, "f": 1 }], "h": "w*27/44" },
         "diag": {
-            "vars": [["k", "35/60"], ["x1", "1-(k/sqrt((k*k+1)))*bra"], ["xr", "1-(k/sqrt((k*k+1)))*brb"], ["a", "-2*brb+w+xr-x1*k+sqrt((2*bra-x1*x1))-sqrt((2*brb-xr*xr))"], ["margin", "30"]],
+            "vars": [["k", "35/60"], ["x1", "1-(k/sqrt((k*k+1)))*brb"], ["xr", "1-(k/sqrt((k*k+1)))*bra"], ["a", "-2*bra+w+xr-x1*k+sqrt((2*brb-x1*x1))-sqrt((2*bra-xr*xr))"], ["margin", "30"]],
             "paths": [
-                { "p": "M0,0V${-k*x1+sqrt((2*bra-x1*x1))+margin}L${w},${-sqrt((k*k+1))-k+1*bw/2+h}V0z", "f": -2, "s": -2 },
-                { "p": "M0,-${bw/2}V${margin}A${bra},${bra},0,0,0,${x1},${sqrt((2*bra-x1*x1))+margin}L${-2*brb+w+xr},${a+sqrt((2*brb-xr*xr))+margin}A${brb},${brb},0,0,0,${w},${a+margin}V-${bw/2}", "s": 1, "f": 2 },
+                { "p": "M0,0V${-k*x1+sqrt((2*brb-x1*x1))+margin}L${w},${-sqrt((k*k+1))-k+1*bw/2+h}V0z", "f": -2, "s": -2 },
+                { "p": "M0,-${bw/2}V${margin}A${brb},${brb},0,0,0,${x1},${sqrt((2*brb-x1*x1))+margin}L${-2*bra+w+xr},${a+sqrt((2*bra-xr*xr))+margin}A${bra},${bra},0,0,0,${w},${a+margin}V-${bw/2}", "s": 1, "f": 2 },
                 { "p": "M${w/2-43},0m5,0l-5,7l65,38l-8,14l29,-7l-10,-27l-8,12l-64,-36z", "f": 1 }
             ],
-            "w": 0,
-            "h": "w-x1*k+sqrt((2*bra-x1*x1))+(sqrt((k*k+1))+k-1*bw/2)+margin",
-            "cover": true
+            "h": "w-x1*k+sqrt((2*brb-x1*x1))+(sqrt((k*k+1))+k-1*bw/2)+margin"
+        },
+        "slash": {
+            "paths": [
+                { "p": "M${w-60-brb},0L${brd},${h}M${w-40-brb},0L${brd+20},${h}M${w-20-brb},0L${brd+40},${h}M${w-brb},0L${brd+60},${h}", "s": 1}
+            ]
         }
     },
     "templates": {
@@ -131,3 +136,5 @@ export default {
         })
     }
 };
+
+export default CONFIG;
