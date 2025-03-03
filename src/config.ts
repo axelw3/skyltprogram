@@ -88,7 +88,14 @@ const CONFIG: UserConfigData = {
         "slash": {
             "paths": [
                 { "p": "M${w-60-brb},0L${brd},${h}M${w-40-brb},0L${brd+20},${h}M${w-20-brb},0L${brd+40},${h}M${w-brb},0L${brd+60},${h}", "s": 1}
-            ]
+            ],
+            "clip": true
+        },
+        "x8": {
+            "paths": [
+                { "p": "M0,0L${w},${h}M${w},0L0,${h}", "s": "#d33" }
+            ],
+            "clip": true
         }
     },
     "templates": {

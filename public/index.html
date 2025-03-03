@@ -27,8 +27,15 @@
     let data_input = document.getElementById("input"), fr = document.getElementById("render");
 
     data_input.addEventListener("change", () => {
-        let parsed = JSON.parse(data_input.value);
-        fr.setAttribute("src", "render.html?data=" + window.encodeURIComponent(JSON.stringify(parsed)));
+        let parsed = {};
+        try{
+            parsed = JSON.parse(data_input.value);
+            data_input.value = JSON.stringify(parsed, null, 4);
+        }catch(e){
+            console.error(e);
+        }finally{
+            fr.setAttribute("src", "render.html?data=" + window.encodeURIComponent(JSON.stringify(parsed)));
+        }
     });
 
     getJSON("templates.json").then(templateData => {

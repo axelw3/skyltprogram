@@ -52,6 +52,10 @@
         "json": {"type":"skylt","properties":{"padding":0,"lineSpacing":0,"background":"transparent","borderWidth":0,"font":"\"TratexVersal\""},"elements":[{"type":"skylt","properties":{"borderWidth":3,"background":"#06a","fillCorners":true},"elements":[{"type":"symbol","properties":{"type":"arrow-small","variant":"fwd"}},{"type":"vagnr","properties":{"value":"50"}}]},{"type":"newline"},{"type":"skylt","properties":{"background":"#06a","borderWidth":3,"fillCorners":true},"elements":[{"type":"symbol","properties":{"type":"arrow-small","variant":"exit"}},{"type":"skylt","properties":{"padding":0},"elements":[{"type":"text","properties":{"value":"ORNÄS"}},{"type":"newline"},{"type":"text","properties":{"value":"500 m"}}]}]}]}
     },
     {
+        "name": "F4. Avfartsorienteringstavla, exempel med avstängd avfart (X8)",
+        "json": {"type":"skylt","properties":{"padding":0,"lineSpacing":0,"background":"transparent","borderWidth":0,"font":"\"TratexVersal\""},"elements":[{"type":"skylt","properties":{"borderWidth":3,"background":"#097","fillCorners":true},"elements":[{"type":"symbol","properties":{"type":"arrow-small","variant":"fwd"}},{"type":"vagnr","properties":{"value":"E20"}}]},{"type":"newline"},{"type":"skylt","properties":{"background":"#06a","borderWidth":3,"fillCorners":true,"borderFeatures":{"overlay":"x8"}},"elements":[{"type":"symbol","properties":{"type":"arrow-small","variant":"exit","maxHeight":90}},{"type":"skylt","properties":{"padding":0,"blockDisplay":true},"elements":[{"type":"skylt","properties":{"padding":0},"elements":[{"type":"vagnr","properties":{"value":"55"}},{"type":"text","properties":{"value":"UPPSALA"}},{"type":"newline"},{"type":"text","properties":{"value":"ENKÖPING"}},{"type":"newline"},{"type":"text","properties":{"value":"STRÄNGNÄS N "}},{"type":"text","properties":{"value":"C","background":"white","color":"#000","padding":[4,0]}}]},{"type":"text","properties":{"value":"500 m","alignContents":"center"}}]}]},{"type":"newline"},{"type":"#avfart","params":["136"]}]}
+    },
+    {
         "name": "F5. Vägvisare, Transportstyrelsens exempel",
         "json": {"type":"skylt","properties":{"borderWidth":3,"borderRadius":7,"borderFeatures":{"right":"arrow"},"padding":6,"font":"\"TratexVersal\""},"elements":[{"type":"text","properties":{"value":"NYKÖPING"}},{"type":"text","properties":{"value":"23","padding":[12,0,0,0]}}]}
     },
@@ -73,7 +77,7 @@
     },
     {
         "name": "F8. Körfältsvägvisare, exempel med infogade H-skyltar",
-        "json": {"type":"skylt","properties":{"borderWidth":3,"font":"\"Tratex\"","background":"white","color":"black"},"elements":[{"type":"skylt","properties":{"blockDisplay":true,"padding":0},"elements":[{"type":"text","properties":{"value":"Lindvallen"}},{"type":"#symgroup","params":["h6","h7","h10","h15","h18"]}]},{"type":"symbol","properties":{"type":"arrow-small","variant":"left"}}]}
+        "json": {"type":"skylt","properties":{"borderWidth":3,"font":"\"Tratex\"","background":"white","color":"black"},"elements":[{"type":"skylt","properties":{"padding":0},"elements":[{"type":"text","properties":{"value":"Lindvallen"}},{"type":"newline"},{"type":"#symgroup","params":["h6","h7","h10","h15","h18"]}]},{"type":"symbol","properties":{"type":"arrow-small","variant":"left"}}]}
     },
     {
         "name": "F8. Körfältsvägvisare, Transportstyrelsens exempel 1/2",
@@ -148,7 +152,7 @@
         "json": {"type":"skylt","properties":{"background":"#fd0","color":"black","borderWidth":4,"font":"\"TratexVersal\"","padding":8,"alignContents":"center","lineSpacing":0},"elements":[{"type":"text","properties":{"value":"VÄGSALTNING"}},{"type":"newline"},{"type":"text","properties":{"value":"UPPHÖR"}}]}
     },
     {
-        "name": "J2. Upplysningsmärke, vattenskyddsområde",
+        "name": "J2. Upplysningsmärke, vattenskyddsområde upphör",
         "json": {"type":"skylt","properties":{"background":"#fd0","color":"#348","borderWidth":4,"font":"\"Tratex\"","padding":0,"lineSpacing":0,"borderFeatures":{"overlay":"slash"}},"elements":[{"type":"skylt","properties":{"color":"#aaa","padding":8,"alignContents":"center"},"elements":[{"type":"text","properties":{"font":"\"TratexVersal\"","value":"VÄTTERN"}},{"type":"newline"},{"type":"text","properties":{"value":"Vattenskyddsområde"}},{"type":"newline"},{"type":"text","properties":{"value":"Water protection area"}}]}]}
     }
 ]
