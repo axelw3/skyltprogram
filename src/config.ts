@@ -103,6 +103,7 @@ const CONFIG: UserConfigData = {
             "type": "skylt",
             "properties": {
                 "padding": 0,
+                "borderWidth": 0,
                 "background": "#aaa",
                 "color": "black"
             },
@@ -138,8 +139,8 @@ const CONFIG: UserConfigData = {
         }),
         "symgroup": (...s: (string | string[])[]) => ({
             "type": "skylt",
-            "properties": {"padding": 0, "xSpacing": 0, "borderWidth": [3, 0, 0, 0], "borderRadius": 0, "color": "black", "background": "white"},
-            "elements": s.map(x => ({"type": "symbol", "properties": {"type": Array.isArray(x) ? x[0] : x, "variant": Array.isArray(x) ? x[1] : undefined , "borderWidth": [0, 3, 3, 3], "padding": 1}}))
+            "properties": {"padding": 0, "xSpacing": 0, "borderWidth": null, "borderRadius": 0, "color": "black", "background": "white"},
+            "elements": s.map((x, i) => ({"type": "symbol", "properties": {"type": Array.isArray(x) ? x[0] : x, "variant": Array.isArray(x) ? x[1] : undefined , "borderRadius": 0, "borderWidth": [i > 0 ? null : 0, 0, 0, 0], "padding": 1}}))
         })
     }
 };
