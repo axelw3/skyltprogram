@@ -14,11 +14,15 @@ Promise.all([
     )
 ]).then(() => {
     let url = new URL(window.location.href);
-    if(!url.searchParams.has("data")) return;
+    let sp = url.searchParams;
+    if(!sp.has("data")) return;
 
-    let data = JSON.parse(url.searchParams.get("data") || "");
+    let w = sp.get("width"),
+        h = sp.get("height");
 
-    renderer.render(data).then((canv: HTMLCanvasElement) => {
+    let data = JSON.parse(sp.get("data") || "");
+
+    renderer.render(data, (w !== null && h !== null) ? [parseInt(w), parseInt(h)] : undefined).then((canv: HTMLCanvasElement) => {
         document.body.appendChild(canv);
     });
 });

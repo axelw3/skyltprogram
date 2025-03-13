@@ -93,7 +93,7 @@
     },
     {
         "name": "F9. Samlingsmärke för vägvisning, Transportstyrelsens exempel",
-        "json": {"type":"skylt","properties":{"alignContents":"center","font":"\"TratexVersal\"","padding":10},"elements":[{"type":"skylt","properties":{"borderWidth":null,"borderFeatures":{"bottom":"bracket"},"alignContents":"center"},"elements":[{"type":"text","properties":{"value":"PAJALA"}},{"type":"newline"},{"type":"text","properties":{"value":"ÖVERTORNEÅ"}}]},{"type":"newline"},{"type":"text","properties":{"value":"KIRUNA"}}]}
+        "json": {"type":"skylt","properties":{"alignContents":"center","font":"\"TratexVersal\""},"elements":[{"type":"skylt","properties":{"borderWidth":null,"borderFeatures":{"bottom":"bracket"},"alignContents":"center"},"elements":[{"type":"text","properties":{"value":"PAJALA"}},{"type":"newline"},{"type":"text","properties":{"value":"ÖVERTORNEÅ"}}]},{"type":"newline"},{"type":"text","properties":{"value":"KIRUNA"}}]}
     },
     {
         "name": "F10. Platsmärke, Transportstyrelsens exempel",

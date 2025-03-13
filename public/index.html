@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="css/styles.css">
     </head>
     <body>
-        <div id="header"><select id="selectTemplate"><option value="-1" disabled selected>Ladda ett exempel...</option></select></div>
+        <div id="header"><select id="selectTemplate"><option value="-1" disabled selected>Ladda ett exempel...</option></select>&nbsp;Storlek (px):&nbsp;<input type="number" id="width" step="1" min="-1" max="2048" value="-1" autocomplete="off">&nbsp;x&nbsp;<input type="number" id="height" step="1" min="-1" max="1024" value="-1" autocomplete="off"></div>
         <div id="main">
             <div id="left"><textarea spellcheck="false" id="input">{}</textarea></div>
             <div id="right"><iframe id="render" src="about:blank"></iframe></div>
@@ -24,7 +24,14 @@
         });
     };
 
-    let data_input = document.getElementById("input"), fr = document.getElementById("render");
+    let data_input = document.getElementById("input"), fr = document.getElementById("render"),
+        width_input = document.querySelector("input#width"), height_input = document.querySelector("input#height");
+
+    function updateDisplay(data){
+        let w = width_input.value,
+            h = height_input.value;
+        fr.setAttribute("src", `render.html?data=${window.encodeURIComponent(JSON.stringify(data))}${(isNaN(w) || isNaN(h) || parseInt(w) <= 0 || parseInt(h) <= 0) ? "" : `&width=${w}&height=${h}`}`);
+    }
 
     data_input.addEventListener("change", () => {
         let parsed = {};
@@ -34,8 +41,16 @@
         }catch(e){
             console.error(e);
         }finally{
-            fr.setAttribute("src", "render.html?data=" + window.encodeURIComponent(JSON.stringify(parsed)));
+            updateDisplay(parsed);
         }
+    });
+
+    width_input.addEventListener("change", () => {
+        updateDisplay(JSON.parse(data_input.value));
+    });
+
+    height_input.addEventListener("change", () => {
+        updateDisplay(JSON.parse(data_input.value));
     });
 
     getJSON("templates.json").then(templateData => {
