@@ -10,7 +10,8 @@ const CONFIG: UserConfigData = {
                 "fwd": { "x": [0.2, 0.8], "y": [0, 0], "ay": "bottom" },
                 "right": { "x": [1, 1], "y": [0.27, 0.27], "ax": "left" },
                 "left": { "x": [0, 0], "y": [0.27, 0.27], "ax": "right" },
-                "lright": { "x": [1, 1], "y": [0.434, 0.434], "ax": "left" }
+                "lright": { "x": [1, 1], "y": [0.434, 0.434], "ax": "left" },
+                "lleft": { "x": [0, 0], "y": [0.434, 0.434], "ax": "right" }
             }
         },
         "roundabout": {

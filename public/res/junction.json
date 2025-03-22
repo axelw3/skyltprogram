@@ -13,6 +13,7 @@
         "fwd": [{"use": 0}],
         "left": [{"use": 2}],
         "right": [{"use": 1}],
-        "lright": [{"use": 1, "translate":[0,1]}]
+        "lright": [{"use": 1, "translate":[0,1]}],
+        "lleft": [{"use": 2, "translate":[0,1]}]
     }
 }
