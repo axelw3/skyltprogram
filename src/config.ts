@@ -45,6 +45,13 @@ const CONFIG: UserConfigData = {
     "symbols": {
         "arrow-small": { "width": 48, "height": [48, 192], "default": "left" },
         "exit": { "width": 46, "height": [26, 26] },
+        "e1": { "width": 48, "height": [48, 48] },
+        "e3": { "width": 48, "height": [48, 48] },
+        "e19": { "width": 48, "height": [48, 48] },
+        "e25": { "width": 48, "height": [48, 48] },
+        "e26": { "width": 47, "height": [38, 38] },
+        "f28": { "width": 48, "height": [48, 48] },
+        "f29": { "width": 61, "height": [48, 48], "default": "metro" },
         "h1": { "width": 40, "height": [40, 40] },
         "h2": { "width": 40, "height": [40, 40] },
         "h3": { "width": 40, "height": [40, 40] },
@@ -75,7 +82,7 @@ const CONFIG: UserConfigData = {
     },
     "borderFeatures": {
         "bracket": { "paths": [{ "p": "M-${bw/2},0H0L22,27L44,0H${bw/2+w}", "s": 1, "f": 2 }], "w": 44, "h": 27 },
-        "arrow": { "paths": [{ "p": "M0,0V${h}H${w}V0z", "f": -2, "s": -2 }, { "p": "M0,0L${w/2},${h*17/27}L${w},0z", "f": 2 }, { "p": "M0,-${bw/2}V0L${w/2},${h*17/27}L${w},0V-${bw/2}V0L${w/2},${h*25/27}L0,0z", "s": 1, "f": 1 }], "h": "w*27/44" },
+        "arrow": { "paths": [{ "p": "M0,0V${h}H${w}V0z", "f": -2, "s": -2 }, { "p": "M0,0L${w/2},${h*17/27}L${w},0z", "f": 2 }, { "p": "M0,-${bw/2}V0L${w/2},${h*18/27}L${w},0V-${bw/2}V0L${w/2},${h*26/27}L0,0z", "s": 1, "f": 1 }], "h": 36 },
         "diag": {
             "vars": [["k", "35/60"], ["x1", "1-(k/sqrt((k*k+1)))*brb"], ["xr", "1-(k/sqrt((k*k+1)))*bra"], ["a", "-2*bra+w+xr-x1*k+sqrt((2*brb-x1*x1))-sqrt((2*bra-xr*xr))"], ["margin", "30"]],
             "paths": [
@@ -139,8 +146,8 @@ const CONFIG: UserConfigData = {
         }),
         "symgroup": (...s: (string | string[])[]) => ({
             "type": "skylt",
-            "properties": {"padding": 0, "xSpacing": 0, "borderWidth": null, "borderRadius": 0, "color": "black", "background": "white"},
-            "elements": s.map((x, i) => ({"type": "symbol", "properties": {"type": Array.isArray(x) ? x[0] : x, "variant": Array.isArray(x) ? x[1] : undefined , "borderRadius": 0, "borderWidth": [i > 0 ? null : 0, 0, 0, 0], "padding": 1}}))
+            "properties": {"padding": 0, "xSpacing": 0, "borderWidth": null, "borderRadius": 0, "color": "black"},
+            "elements": s.map((x, i) => ({"type": "symbol", "properties": {"background": "white","cover": true, "type": Array.isArray(x) ? x[0] : x, "variant": Array.isArray(x) ? x[1] : undefined , "borderRadius": 0, "borderWidth": [i > 0 ? null : 0, 0, 0, 0], "padding": 1}}))
         })
     }
 };
