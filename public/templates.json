@@ -1,21 +1,5 @@
 [
     {
-        "name": "E1. Motorväg",
-        "json": {"type":"symbol","properties":{"type":"e1","scale":3,"grow":true,"padding":[12,40],"background":"#097"}}
-    },
-    {
-        "name": "E3. Motortrafikled",
-        "json": {"type":"symbol","properties":{"type":"e3","scale":3,"padding":[12,40],"background":"#097"}}
-    },
-    {
-        "name": "E19. Parkering",
-        "json": {"type":"symbol","properties":{"type":"e19","scale":3,"background":"#06a"}}
-    },
-    {
-        "name": "E25. Betalväg",
-        "json": {"type":"symbol","properties":{"type":"e25","scale":3,"background":"white","color":"black"}}
-    },
-    {
         "name": "E26. Tunnel",
         "json": {"type":"skylt","properties":{"font":"\"TratexVersal\"","alignContents":"center"},"elements":[{"type":"symbol","properties":{"type":"e26","background":"white","scale":3}},{"type":"newline"},{"type":"text","properties":{"value":"2,0 km","padding":[0,15]}}]}
     },
@@ -29,7 +13,7 @@
     },
     {
         "name": "F1-1. Orienteringstavla, mer invecklat exempel",
-        "json": {"type":".junction","properties":{"font":"\"TratexVersal\""},"nodes":{"left":{"anchor":{"y":"middle"},"data":{"type":"skylt","properties":{"alignContents":"right"},"elements":[{"type":"vagnr","properties":{"value":"26"}},{"type":"vagnr","properties":{"value":"40"}},{"type":"text","properties":{"value":"JÖNKÖPING"}}]}},"right":{"anchor":{"y":"middle-first"},"data":{"type":"skylt","properties":{"borderWidth":null,"background":"#097"},"elements":[{"type":"vagnr","properties":{"value":"26","background":"#06a"}},{"type":"text","properties":{"value":"HALMSTAD"}},{"type":"newline"},{"type":"text","properties":{"value":"GISLAVED"}},{"type":"newline"},{"type":"text","properties":{"value":"Sjukhus","font":"\"Tratex\"","color":"black","background":"white"}}]}}}}
+        "json": {"type":".junction","properties":{"font":"\"TratexVersal\""},"nodes":{"left":{"anchor":{"y":"middle"},"data":{"type":"skylt","properties":{"alignContents":"right"},"elements":[{"type":"vagnr","properties":{"value":"26"}},{"type":"vagnr","properties":{"value":"40"}},{"type":"text","properties":{"value":"JÖNKÖPING"}}]}},"right":{"anchor":{"y":"middle-first"},"data":{"type":"skylt","properties":{"borderWidth":null,"background":"#097"},"elements":[{"type":"vagnr","properties":{"value":"26","background":"#06a"}},{"type":"text","properties":{"value":"HALMSTAD"}},{"type":"newline"},{"type":"text","properties":{"value":"GISLAVED"}},{"type":"newline"},{"type":"skylt","properties":{"background":"white","padding":3},"elements":[{"type":"symbol","properties":{"type":"g4","padding":0}},{"type":"text","properties":{"value":"Sjukhus","font":"\"Tratex\"","color":"black"}}]}]}}}}
     },
     {
         "name": "F1-1. Orienteringstavla, Transportstyrelsens exempel",
