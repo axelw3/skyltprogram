@@ -48,11 +48,11 @@ const CONFIG: UserConfigData = {
         "exit": { "width": 46, "height": [26, 26] },
         "e1": { "width": 48, "height": [48, 48] },
         "e3": { "width": 48, "height": [48, 48] },
-        "e19": { "width": 48, "height": [48, 48] },
-        "e25": { "width": 48, "height": [48, 48] },
-        "e26": { "width": 47, "height": [38, 38] },
-        "f28": { "width": 48, "height": [48, 48] },
-        "f29": { "width": 61, "height": [48, 48], "default": "metro" },
+        "e19": { "width": 40, "height": [40, 40] },
+        "e25": { "width": 40, "height": [40, 40] },
+        "e26": { "width": 40, "height": [32, 32] },
+        "f28": { "width": 40, "height": [40, 40] },
+        "f29": { "width": 55, "height": [40, 40], "default": "metro" },
         "g1": { "width": 36, "height": [36, 36] },
         "g2": { "width": 36, "height": [36, 36] },
         "g4": { "width": 36, "height": [36, 36] },
@@ -158,8 +158,8 @@ const CONFIG: UserConfigData = {
         }),
         "symgroup": (...s: (string | string[])[]) => ({
             "type": "skylt",
-            "properties": {"padding": 0, "xSpacing": 0, "borderWidth": null, "borderRadius": 0, "color": "black"},
-            "elements": s.map((x, i) => ({"type": "symbol", "properties": {"background": "white","cover": true, "type": Array.isArray(x) ? x[0] : x, "variant": Array.isArray(x) ? x[1] : undefined , "borderRadius": 0, "borderWidth": [i > 0 ? null : 0, 0, 0, 0]}}))
+            "properties": {"padding": 0, "borderWidth": null, "borderRadius": 0, "color": "black"},
+            "elements": s.map((x, i) => ({"type": "symbol", "properties": {"background": "white", "cover": true, "type": Array.isArray(x) ? x[0] : x, "variant": Array.isArray(x) ? x[1] : undefined , "borderRadius": 0, "borderWidth": [i > 0 ? null : 0, 0, 0, 0], "xSpacing": 0}}))
         })
     }
 };

@@ -1,7 +1,7 @@
 [
     {
         "name": "E26. Tunnel",
-        "json": {"type":"skylt","properties":{"font":"\"TratexVersal\"","alignContents":"center"},"elements":[{"type":"symbol","properties":{"type":"e26","background":"white","scale":3}},{"type":"newline"},{"type":"text","properties":{"value":"2,0 km","padding":[0,15]}}]}
+        "json": {"type":"skylt","properties":{"font":"\"TratexVersal\"","alignContents":"center"},"elements":[{"type":"symbol","properties":{"type":"e26","background":"white","scale":4}},{"type":"newline"},{"type":"text","properties":{"value":"2,0 km","padding":[0,15]}}]}
     },
     {
         "name": "F1-1. Orienteringstavla, enkelt exempel",
@@ -13,7 +13,7 @@
     },
     {
         "name": "F1-1. Orienteringstavla, mer invecklat exempel",
-        "json": {"type":".junction","properties":{"font":"\"TratexVersal\""},"nodes":{"left":{"anchor":{"y":"middle"},"data":{"type":"skylt","properties":{"alignContents":"right"},"elements":[{"type":"vagnr","properties":{"value":"26"}},{"type":"vagnr","properties":{"value":"40"}},{"type":"text","properties":{"value":"JÖNKÖPING"}}]}},"right":{"anchor":{"y":"middle-first"},"data":{"type":"skylt","properties":{"borderWidth":null,"background":"#097"},"elements":[{"type":"vagnr","properties":{"value":"26","background":"#06a"}},{"type":"text","properties":{"value":"HALMSTAD"}},{"type":"newline"},{"type":"text","properties":{"value":"GISLAVED"}},{"type":"newline"},{"type":"skylt","properties":{"background":"white","padding":3},"elements":[{"type":"symbol","properties":{"type":"g4"}},{"type":"text","properties":{"value":"Sjukhus","font":"\"Tratex\"","color":"black"}}]}]}}}}
+        "json": {"type":".junction","properties":{"font":"\"TratexVersal\""},"nodes":{"left":{"anchor":{"y":"middle"},"data":{"type":"skylt","properties":{"alignContents":"right"},"elements":[{"type":"vagnr","properties":{"value":"26"}},{"type":"vagnr","properties":{"value":"40"}},{"type":"text","properties":{"value":"JÖNKÖPING"}}]}},"right":{"anchor":{"y":"middle-first"},"data":{"type":"skylt","properties":{"borderWidth":null,"background":"#097"},"elements":[{"type":"vagnr","properties":{"value":"26","background":"#06a"}},{"type":"text","properties":{"value":"HALMSTAD"}},{"type":"newline"},{"type":"text","properties":{"value":"GISLAVED"}},{"type":"newline"},{"type":"skylt","properties":{"background":"white","padding":3},"elements":[{"type":"#symgroup","params":["g4"]},{"type":"text","properties":{"value":"Sjukhus","font":"\"Tratex\"","color":"black"}}]}]}}}}
     },
     {
         "name": "F1-1. Orienteringstavla, Transportstyrelsens exempel",
@@ -21,11 +21,11 @@
     },
     {
         "name": "F1-1. Orienteringstavla, exempel med pilar i olika höjd",
-        "json": {"type":".junction","properties":{"font":"\"TratexVersal\""},"nodes":{"fwd":{"anchor":{"x":"center"},"data":{"type":"skylt","properties":{"xSpacing":0},"elements":[{"type":"vagnr","properties":{"value":"E16","background":"#097"}},{"type":"vagnr","properties":{"value":"66"}}]}},"left":{"anchor":{"y":"middle-first"},"data":{"type":"text","properties":{"value":"SKAMHED"}}},"lright":{"anchor":{"y":"middle-first"},"data":{"type":"text","properties":{"value":"SKÅLÖ"}}}}}
+        "json": {"type":".junction","properties":{"font":"\"TratexVersal\""},"nodes":{"fwd":{"anchor":{"x":"center"},"data":{"type":"skylt","elements":[{"type":"vagnr","properties":{"value":"E16","background":"#097"}},{"type":"vagnr","properties":{"value":"66"}}]}},"left":{"anchor":{"y":"middle-first"},"data":{"type":"text","properties":{"value":"SKAMHED"}}},"lright":{"anchor":{"y":"middle-first"},"data":{"type":"text","properties":{"value":"SKÅLÖ"}}}}}
     },
     {
         "name": "F1-1. Orienteringstavla, ytterligare ett exempel",
-        "json": {"type":".junction","properties":{"font":"\"TratexVersal\""},"nodes":{"fwd":{"anchor":{"x":"center"},"data":{"type":"skylt","elements":[{"type":"skylt","properties":{"borderWidth":null,"background":"#097"},"elements":[{"type":"vagnr","properties":{"value":"E18","background":"#097","dashedInset":true,"padding":[30,null]}},{"type":"text","properties":{"value":"STOCKHOLM"}}]},{"type":"newline"},{"type":"skylt","elements":[{"type":"vagnr","properties":{"value":"268"}},{"type":"text","properties":{"value":"VALLENTUNA"}}]}]}},"lleft":{"anchor":{"y":"middle-first"},"data":{"type":"text","properties":{"value":"SJÖBERG"}}},"right":{"anchor":{"y":"middle-first"},"data":{"type":"skylt","properties":{"xSpacing":0,"background":"#097","borderWidth":null},"elements":[{"type":"vagnr","properties":{"value":"E18"}},{"type":"symbol","properties":{"type":"e3","borderWidth":null,"cover":true,"padding":[null,0]}},{"type":"newline"},{"type":"text","properties":{"value":"NORRTÄLJE"}}]}}}}
+        "json": {"type":".junction","properties":{"font":"\"TratexVersal\""},"nodes":{"fwd":{"anchor":{"x":"center"},"data":{"type":"skylt","elements":[{"type":"skylt","properties":{"borderWidth":null,"background":"#097"},"elements":[{"type":"vagnr","properties":{"value":"E18","background":"#097","dashedInset":true,"padding":[30,null]}},{"type":"text","properties":{"value":"STOCKHOLM"}}]},{"type":"newline"},{"type":"skylt","elements":[{"type":"vagnr","properties":{"value":"268"}},{"type":"text","properties":{"value":"VALLENTUNA"}}]}]}},"lleft":{"anchor":{"y":"middle-first"},"data":{"type":"text","properties":{"value":"SJÖBERG"}}},"right":{"anchor":{"y":"middle-first"},"data":{"type":"skylt","properties":{"xSpacing":0,"background":"#097","borderWidth":null},"elements":[{"type":"vagnr","properties":{"value":"E18"}},{"type":"symbol","properties":{"type":"e3","borderWidth":null,"cover":true,"padding":[7,0],"xSpacing":0}},{"type":"newline"},{"type":"text","properties":{"value":"NORRTÄLJE"}}]}}}}
     },
     {
         "name": "F1-2. Orienteringstavla, exempel",
@@ -157,11 +157,11 @@
     },
     {
         "name": "F28. Parkeringshus",
-        "json": {"type":"symbol","properties":{"type":"f28","scale":3,"background":"#06a"}}
+        "json": {"type":"symbol","properties":{"type":"f28","scale":3,"background":"#06a","padding":10}}
     },
     {
         "name": "F29. Infartsparkering",
-        "json": {"type":"symbol","properties":{"type":"f29","scale":3}}
+        "json": {"type":"symbol","properties":{"type":"f29","scale":3,"padding":10}}
     },
     {
         "name": "G3. Radiostation för vägtrafikinformation, Transportstyrelsens exempel",
@@ -181,6 +181,6 @@
     },
     {
         "name": "J2. Trängselskatt i Stockholm",
-        "json": {"type":"skylt","properties":{"background":"#fd0","color":"black","font":"\"Tratex\"","alignContents":"center","lineSpacing":0,"borderWidth":5,"borderRadius":0},"elements":[{"type":"symbol","properties":{"type":"e25","scale":2.5,"borderWidth":null,"background":"white","borderRadius":10}},{"type":"skylt","properties":{"alignContents":"center"},"elements":[{"type":"text","properties":{"value":"Trängselskatt"}},{"type":"newline"},{"type":"text","properties":{"value":"i Stockholm"}},{"type":"newline"},{"type":"text","properties":{"value":"0771-29 29 29"}}]}]}
+        "json": {"type":"skylt","properties":{"background":"#fd0","color":"black","font":"\"Tratex\"","alignContents":"center","lineSpacing":0,"borderWidth":5,"borderRadius":0},"elements":[{"type":"symbol","properties":{"type":"e25","scale":3,"borderWidth":null,"background":"white","borderRadius":10}},{"type":"skylt","properties":{"alignContents":"center"},"elements":[{"type":"text","properties":{"value":"Trängselskatt"}},{"type":"newline"},{"type":"text","properties":{"value":"i Stockholm"}},{"type":"newline"},{"type":"text","properties":{"value":"0771-29 29 29"}}]}]}
     }
 ]
