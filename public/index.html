@@ -9,73 +9,8 @@
         <div id="header"><select id="selectTemplate"><option value="-1" disabled selected>Ladda ett exempel...</option></select>&nbsp;Storlek (px):&nbsp;<input type="number" id="width" step="1" min="-1" max="2048" value="-1" autocomplete="off">&nbsp;x&nbsp;<input type="number" id="height" step="1" min="-1" max="1024" value="-1" autocomplete="off"></div>
         <div id="main">
             <div id="left"><textarea spellcheck="false" id="input">{}</textarea></div>
-            <div id="right"><iframe id="render" src="about:blank"></iframe></div>
+            <div id="right"><div id="render"></div></div>
         </div>
-        <script>
-(async function(){
-    let getJSON = url => {
-        return new Promise((resolve, reject) => {
-            let req = new XMLHttpRequest();
-            req.addEventListener("load", () => {
-                resolve(JSON.parse(req.responseText));
-            });
-            req.open("GET", url);
-            req.send();
-        });
-    };
-
-    let data_input = document.getElementById("input"), fr = document.getElementById("render"),
-        width_input = document.querySelector("input#width"), height_input = document.querySelector("input#height");
-
-    function updateDisplay(data){
-        let w = width_input.value,
-            h = height_input.value;
-        fr.setAttribute("src", `render.html?data=${window.encodeURIComponent(JSON.stringify(data))}${(isNaN(w) || isNaN(h) || parseInt(w) <= 0 || parseInt(h) <= 0) ? "" : `&width=${w}&height=${h}`}`);
-    }
-
-    data_input.addEventListener("change", () => {
-        let parsed = {};
-        try{
-            parsed = JSON.parse(data_input.value);
-            data_input.value = JSON.stringify(parsed, null, 4);
-        }catch(e){
-            console.error(e);
-        }finally{
-            updateDisplay(parsed);
-        }
-    });
-
-    width_input.addEventListener("change", () => {
-        updateDisplay(JSON.parse(data_input.value));
-    });
-
-    height_input.addEventListener("change", () => {
-        updateDisplay(JSON.parse(data_input.value));
-    });
-
-    getJSON("templates.json").then(templateData => {
-        let templateSelect = document.getElementById("selectTemplate");
-
-        templateData.forEach((template, i) => {
-            let option_el = document.createElement("option");
-            option_el.appendChild(document.createTextNode(template.name));
-            option_el.setAttribute("value", i.toString(10));
-            templateSelect.appendChild(option_el);
-        });
-
-        templateSelect.value = data_input.value.length < 6 ? 0 : (-1);
-
-        templateSelect.addEventListener("change", () => {
-            let i = parseInt(templateSelect.value);
-
-            if(i >= 0) data_input.value = JSON.stringify(templateData[i].json, null, 4);
-
-            data_input.dispatchEvent(new Event("change"));
-        });
-
-        templateSelect.dispatchEvent(new Event("change"));
-    });
-})();
-        </script>
+        <script src="src/render.js" type="module"></script>
     </body>
 </html>
