@@ -56,10 +56,8 @@ Promise.all([
         "font/TRATEXPOSVERSAL-POSVERSAL.otf"
     )
 ]).then(() => {
-    console.log("OK");
-});
-
-getJSON("templates.json").then((templateData: any) => {
+    return getJSON("templates.json");
+}).then((templateData: any) => {
     let templateSelect: any = document.getElementById("selectTemplate");
 
     templateData.forEach((template: any, i: number) => {
