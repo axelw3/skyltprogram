@@ -127,7 +127,7 @@ body, html{
                 color .1s;
 }
 
-#modes > div.active{
+#modes > div.active, #openfile, #savefile{
     color: #000 !important;
     background-color: #fff !important;
     border-width: 1px !important;
@@ -151,6 +151,8 @@ body, html{
     border: 1px solid #aaa;
     border-radius: 3px;
     margin: 2px;
+    max-width: max(200px, calc(100% - 119px));
+    text-overflow: ellipsis;
 }
 
 #left > #contents{
@@ -199,7 +201,7 @@ h3{
     margin: 9px 0 5px 0;
 }
 
-.elementknappar > div:hover, #mode:hover, #selectTemplate:hover{
+.elementknappar > div:hover, #mode:hover, #selectTemplate:hover, #openfile:hover, #savefile:hover{
     filter: brightness(0.9);
 }
 
@@ -316,4 +318,13 @@ h3{
     border: 1px solid #f00;
     background: #eea;
     font-family: monospace;
+}
+
+#openfile, #savefile{
+    float: left;
+    margin: 2px;
+    width: 18px;
+    height: 18px;
+    border-style: solid;
+    cursor: pointer;
 }

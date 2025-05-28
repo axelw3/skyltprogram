@@ -423,14 +423,39 @@ class SignElement{
     }
 };
 
-let data_input: any = document.getElementById("input"), fr: any = document.getElementById("render"),
-    width_input: any = document.querySelector("input#width"), height_input: any = document.querySelector("input#height"),
+let data_input = document.getElementById("input") as HTMLTextAreaElement, fr = document.getElementById("render") as HTMLElement,
     visels = document.getElementById("els") as HTMLElement,
     modesBtn = document.getElementById("modes") as HTMLElement,
     jsonModeBtn = document.getElementById("jsonmode") as HTMLElement,
-    visModeBtn = document.getElementById("vismode") as HTMLElement;
+    visModeBtn = document.getElementById("vismode") as HTMLElement,
+    saveBtn = document.querySelector("#savefile") as HTMLElement,
+    openBtn = document.querySelector("#valjfil") as HTMLInputElement;
 
 let root: SignElement;
+
+openBtn.addEventListener("change", () => {
+    if(!openBtn.files || openBtn.files.length !== 1) return;
+
+    openBtn.files[0].text().then(data => {
+        data_input.value = data;
+        data_input.dispatchEvent(new Event("change"));
+    });
+});
+
+let prevObjUrl: string | undefined = undefined;
+const win: any = window.URL ?? window.webkitURL;
+
+saveBtn.addEventListener("click", () => {
+    if(!!prevObjUrl) win.revokeObjectURL(prevObjUrl);
+    let namn = prompt("Filnamn (utan tillägg):", "min-skylt");
+    if(namn === null) return;
+
+    let data = JSON.stringify(root.toJSON());
+
+    let saveLink = saveBtn.firstChild as HTMLElement;
+    saveLink.setAttribute("href", prevObjUrl = win.createObjectURL(new Blob([data], {type: "text/plain"})));
+    saveLink.setAttribute("download", `${namn.replace(/[\x00-\x1f"\<\>\|\b\0\t\*\?\:\x7f]/g, "")}.sk.json`);
+}, {capture: true});
 
 modesBtn.addEventListener("click", () => {
     let visMode = visels.classList.toggle("visible");
@@ -457,10 +482,7 @@ function updateVisualEditor(){
 function updatePreview(updateCodeBox: boolean){
     let data: SignElementOptions = root.toJSON();
 
-    let w = parseInt(width_input.value),
-        h = parseInt(height_input.value);
-
-    renderer.render(data, (!isNaN(w) && !isNaN(h) && w > 0 && h > 0) ? [w, h] : undefined).then((canv: HTMLCanvasElement) => {
+    renderer.render(data).then((canv: HTMLCanvasElement) => {
         Object.assign(canv.style, {
             position: "absolute",
             top: `max(0px, calc(50% - ${canv.height / 2}px))`,
@@ -487,14 +509,6 @@ data_input.addEventListener("change", () => {
     }catch(e){
         console.error(e);
     }
-});
-
-width_input.addEventListener("change", () => {
-    updatePreview(false);
-});
-
-height_input.addEventListener("change", () => {
-    updatePreview(false);
 });
 
 let mainEl = document.getElementById("main") as HTMLElement;
@@ -560,16 +574,25 @@ Promise.all([
 ]).then(() => {
     return getJSON("templates.json");
 }).then((templateData: any) => {
-    let templateSelect: any = document.getElementById("selectTemplate");
+    let templateSelect = document.getElementById("selectTemplate") as HTMLSelectElement;
+    let group: HTMLOptGroupElement | undefined = undefined;
+    let firstOption: number = 0;
 
     templateData.forEach((template: any, i: number) => {
+        if(typeof template === "string"){
+            group = templateSelect.appendChild(document.createElement("optgroup"));
+            group.setAttribute("label", template);
+            if(firstOption === i) firstOption++;
+            return;
+        }
+
         let option_el = document.createElement("option");
         option_el.appendChild(document.createTextNode(template.name));
-        option_el.setAttribute("value", i.toString(10));
-        templateSelect.appendChild(option_el);
+        option_el.setAttribute("value", String(i));
+        (group ?? templateSelect).appendChild(option_el);
     });
 
-    templateSelect.value = data_input.value.length < 6 ? 0 : (-1);
+    templateSelect.value = data_input.value.length < 6 ? String(firstOption) : "-1";
 
     templateSelect.addEventListener("change", () => {
         let i = parseInt(templateSelect.value);

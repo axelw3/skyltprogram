@@ -1,8 +1,10 @@
 [
+    "E. Anvisningsmärken",
     {
         "name": "E26. Tunnel",
         "json": {"type":"skylt","properties":{"font":"\"TratexVersal\"","alignContents":"center"},"elements":[{"type":"symbol","properties":{"type":"e26","background":"white","scale":4}},{"type":"newline"},{"type":"text","properties":{"value":"2,0 km","padding":[0,15]}}]}
     },
+    "F. Lokaliseringsmärken för vägvisning",
     {
         "name": "F1-1. Orienteringstavla, enkelt exempel",
         "json": {"type":".junction","properties":{"font":"\"TratexVersal\""},"nodes":{"fwd":{"anchor":{"x":"center-first"},"data":{"type":"skylt","elements":[{"type":"vagnr","properties":{"value":"26"}},{"type":"vagnr","properties":{"value":"40"}},{"type":"text","properties":{"value":"JÖNKÖPING"}}]}},"right":{"anchor":{"y":"middle-first"},"data":{"type":"skylt","elements":[{"type":"vagnr","properties":{"value":"26"}},{"type":"text","properties":{"value":"HALMSTAD"}},{"type":"newline"},{"type":"text","properties":{"value":"GISLAVED"}}]}}}}
@@ -163,14 +165,17 @@
         "name": "F29. Infartsparkering",
         "json": {"type":"symbol","properties":{"type":"f29","scale":3,"padding":10}}
     },
+    "G. Lokaliseringsmärken för upplysning om allmänna inrättningar med mera",
     {
         "name": "G3. Radiostation för vägtrafikinformation, Transportstyrelsens exempel",
         "json": {"type":"skylt","properties":{"padding":[17,17,17,2],"alignContents":"center","font":"\"TratexVersal\""},"elements":[{"type":"skylt","properties":{"alignContents":"center","background":"white","color":"black","padding":12},"elements":[{"type":"text","properties":{"value":"Radio","font":"\"Tratex\""}},{"type":"newline"},{"type":"text","properties":{"value":"FM4"}}]},{"type":"newline"},{"type":"text","properties":{"value":"98,7"}}]}
     },
+    "H. Lokaliseringsmärken för upplysning om serviceanläggningar med mera",
     {
         "name": "H23. Förberedande upplysning om vägnära service, enkelt exempel",
         "json": {"type":"skylt","properties":{"font":"\"Tratex\"","blockDisplay":true},"elements":[{"type":"skylt","properties":{"background":"white","color":"black"},"elements":[{"type":"#symgroup","params":["h13"]},{"type":"text","properties":{"value":"Strandkanten"}},{"type":"newline"},{"type":"#symgroup","params":["h6","h7","h15"]}]},{"type":"text","properties":{"font":"\"TratexVersal\"","value":"18 km","alignContents":"center"}}]}
     },
+    "J. Upplysningsmärken",
     {
         "name": "J2. Upplysningsmärke, Transportstyrelsens exempel",
         "json": {"type":"skylt","properties":{"background":"#fd0","color":"black","font":"\"TratexVersal\"","alignContents":"center","lineSpacing":0},"elements":[{"type":"text","properties":{"value":"VÄGSALTNING"}},{"type":"newline"},{"type":"text","properties":{"value":"UPPHÖR"}}]}
