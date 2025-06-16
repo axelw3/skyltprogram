@@ -429,7 +429,8 @@ let data_input = document.getElementById("input") as HTMLTextAreaElement, fr = d
     jsonModeBtn = document.getElementById("jsonmode") as HTMLElement,
     visModeBtn = document.getElementById("vismode") as HTMLElement,
     saveBtn = document.querySelector("#savefile") as HTMLElement,
-    openBtn = document.querySelector("#valjfil") as HTMLInputElement;
+    openBtn = document.querySelector("#valjfil") as HTMLInputElement,
+    svgBtn = document.querySelector("#svgexp") as HTMLElement;
 
 let root: SignElement;
 
@@ -445,16 +446,32 @@ openBtn.addEventListener("change", () => {
 let prevObjUrl: string | undefined = undefined;
 const win: any = window.URL ?? window.webkitURL;
 
-saveBtn.addEventListener("click", () => {
+function createFileDownload(linkElement: HTMLAnchorElement, data: string, mimeType: string, fileExt: string): boolean{
     if(!!prevObjUrl) win.revokeObjectURL(prevObjUrl);
     let namn = prompt("Filnamn (utan tillägg):", "min-skylt");
-    if(namn === null) return;
+    if(namn === null) return false;
 
+    linkElement.setAttribute("href", prevObjUrl = win.createObjectURL(new Blob([data], {type: mimeType})));
+    linkElement.setAttribute("download", `${namn.replace(/[\x00-\x1f"\<\>\|\b\0\t\*\?\:\x7f]/g, "")}.${fileExt}`);
+    return true;
+}
+
+saveBtn.addEventListener("click", () => {
     let data = JSON.stringify(root.toJSON());
+    let btnLink = document.createElement("a");
+    if(createFileDownload(btnLink, data, "text/plain", "sk.json")){
+        btnLink.click();
+    }
+}, {capture: true});
 
-    let saveLink = saveBtn.firstChild as HTMLElement;
-    saveLink.setAttribute("href", prevObjUrl = win.createObjectURL(new Blob([data], {type: "text/plain"})));
-    saveLink.setAttribute("download", `${namn.replace(/[\x00-\x1f"\<\>\|\b\0\t\*\?\:\x7f]/g, "")}.sk.json`);
+svgBtn.addEventListener("click", () => {
+    renderer.renderToSVG(root.toJSON()).then(svg => {
+        let data = svg.genSVG(true);
+        let btnLink = document.createElement("a");
+        if(createFileDownload(btnLink, data, "image/svg+xml", "svg")){
+            btnLink.click();
+        }
+    });
 }, {capture: true});
 
 modesBtn.addEventListener("click", () => {

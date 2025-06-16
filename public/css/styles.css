@@ -127,7 +127,7 @@ body, html{
                 color .1s;
 }
 
-#modes > div.active, #openfile, #savefile{
+#modes > div.active, #openfile, #savefile, #svgexp{
     color: #000 !important;
     background-color: #fff !important;
     border-width: 1px !important;
@@ -201,7 +201,7 @@ h3{
     margin: 9px 0 5px 0;
 }
 
-.elementknappar > div:hover, #mode:hover, #selectTemplate:hover, #openfile:hover, #savefile:hover{
+.elementknappar > div:hover, #mode:hover, #selectTemplate:hover, #openfile:hover, #savefile:hover, #svgexp:hover{
     filter: brightness(0.9);
 }
 
@@ -320,7 +320,7 @@ h3{
     font-family: monospace;
 }
 
-#openfile, #savefile{
+#openfile, #savefile, #svgexp{
     float: left;
     margin: 2px;
     width: 18px;
