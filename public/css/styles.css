@@ -151,7 +151,7 @@ body, html{
     border: 1px solid #aaa;
     border-radius: 3px;
     margin: 2px;
-    max-width: max(200px, calc(100% - 119px));
+    max-width: max(200px, calc(100% - 143px));
     text-overflow: ellipsis;
 }
 

@@ -27,10 +27,10 @@ function createHTMLEl(type: string, innerText: string | null, classNames: string
     return el;
 }
 
-function createSelect(options: readonly string[], onchange?: (newValue: string) => void): HTMLSelectElement{
+function createSelect<T extends string>(options: readonly T[], onchange?: (newValue: T) => void): HTMLSelectElement{
     let el = document.createElement("select");
     options.forEach(x => el.appendChild(createHTMLEl("option", x)));
-    if(onchange !== undefined) el.addEventListener("change", () => onchange(el.value));
+    if(onchange !== undefined) el.addEventListener("change", () => onchange(el.value as T));
     return el;
 }
 
@@ -74,31 +74,28 @@ class SignElement{
     private children: SignElement[];
     private params?: any[];
 
-    private ownIndex: number;
     private allowFlytt: boolean;
 
     private nodeName?: string;
     private anchor?: SignElementAnchor;
-    private isDeleted: boolean = false;
 
     private expanded: boolean = true;
 
-    constructor(data: SignElementOptions, parentType: SignElementType | null, i: number, allowFlytt: boolean, nodeName?: string, nodeAnchor?: SignElementAnchor,){
+    constructor(data: SignElementOptions, parentType: SignElementType | null, allowFlytt: boolean, nodeName?: string, nodeAnchor?: SignElementAnchor,){
         this.type = data.type;
         this.parentType = parentType;
         this.properties = data.properties;
         this.children = [];
         this.params = data.params;
 
-        this.ownIndex = i;
         this.allowFlytt = allowFlytt;
 
         this.nodeName = nodeName;
         this.anchor = nodeAnchor;
 
-        data.elements?.forEach(el => this.children.push(new SignElement(el, data.type, this.children.length, true)));
+        data.elements?.forEach(el => this.children.push(new SignElement(el, data.type, true)));
         Object.entries(data.nodes ?? {}).forEach(entry => {
-            this.children.push(new SignElement(entry[1].data, data.type, this.children.length, false, entry[0], entry[1].anchor));
+            this.children.push(new SignElement(entry[1].data, data.type, false, entry[0], entry[1].anchor));
         });
     }
 
@@ -128,7 +125,6 @@ class SignElement{
     }
 
     swapChildren(a: number, b: number){
-        [this.children[a].ownIndex, this.children[b].ownIndex] = [this.children[b].ownIndex, this.children[a].ownIndex];
         [this.children[a], this.children[b]] = [this.children[b], this.children[a]];
     }
 
@@ -170,12 +166,11 @@ class SignElement{
         let props = Object.entries(SignProperties).filter(pr => (this.properties === undefined || !(pr[0] in this.properties))  && !pr[1].disableFor.includes(this.getBaseType()) );
         if(props.length > 0){
             let propValue = document.createElement("td");
-            let typVal: HTMLSelectElement = createSelect(props.map(p => p[0]), v => {
-                let pro = SignProperties[v as keyof SignElementUserProperties];
-                propValue.innerHTML = "";
+            let typVal: HTMLSelectElement = createSelect(props.map(p => p[0]) as (keyof SignElementUserProperties)[], v => {
+                let pro = SignProperties[v];
 
-                let propValueInput: HTMLSelectElement | HTMLInputElement = createPropInput(v as keyof SignElementUserProperties);
-                propValue.appendChild(propValueInput);
+                let propValueInput: HTMLSelectElement | HTMLInputElement = createPropInput(v);
+                propValue.replaceChildren(propValueInput);
 
                 let f: () => void = () => {
                     let newVal: any;
@@ -186,7 +181,7 @@ class SignElement{
 
                     if(this.properties === undefined) this.properties = {};
 
-                    this.properties[v as keyof SignElementUserProperties] = newVal;
+                    this.properties[v] = newVal;
                     updatePreview(false);
                     el.replaceWith(this.propertyEditor());
                 };
@@ -207,7 +202,7 @@ class SignElement{
         return el;
     }
 
-    generateVis(z: number, parent: SignElement | null): HTMLElement{
+    generateVis(z: number, i: number, parent: SignElement | null): HTMLElement{
         let el = createHTMLEl("div", null, ["skyltelement"]);
         if(this.expanded) el.classList.add("expanded");
 
@@ -253,10 +248,7 @@ class SignElement{
                     break;
                 }
 
-                this.children.forEach(child => {
-                    if(child.isDeleted) return;
-                    barn.appendChild(child.generateVis(z + 1, this));
-                });
+                this.children.forEach((child, i) => barn.appendChild(child.generateVis(z + 1, i, this)));
 
                 let laggTill = createHTMLEl("div", null, ["nyttelement"]);
                 laggTill.appendChild(createHTMLEl("h2", "Lägg till..."));
@@ -291,12 +283,12 @@ class SignElement{
                     }
                     if(newEl !== null){
                         if(this.type.startsWith(".")){
-                            this.children.push(new SignElement(newEl, this.type, this.children.length, false, laggTillNod.value, {}));
+                            this.children.push(new SignElement(newEl, this.type, false, laggTillNod.value, {}));
                         }else{
-                            this.children.push(new SignElement(newEl, this.type, this.children.length, true));
+                            this.children.push(new SignElement(newEl, this.type, true));
                         }
 
-                        el.replaceWith(this.generateVis(z, parent));
+                        el.replaceWith(this.generateVis(z, i, parent));
                         updatePreview(false);
                     }
                 });
@@ -316,7 +308,7 @@ class SignElement{
             pt1.appendChild(createSelect(Object.keys((CONFIG.signTypes ?? {})[this.parentType.slice(1)]?.nodes), newValue => {
                 this.nodeName = newValue;
                 updatePreview(false);
-                el.replaceWith(this.generateVis(z, parent));
+                el.replaceWith(this.generateVis(z, i, parent));
             })).value = this.nodeName;
 
             pt2.appendChild(createHTMLEl("td", "Ankare:\xa0"));
@@ -345,9 +337,9 @@ class SignElement{
                 let elUpp = createHTMLEl("div", "\u2191", ["uppelement"]),
                     elNed = createHTMLEl("div", "\u2193", ["nedelement"]);
 
-                if(this.allowFlytt && this.ownIndex > 0){
+                if(this.allowFlytt && i > 0){
                     elUpp.addEventListener("click", () => {
-                        parent.swapChildren(this.ownIndex, this.ownIndex - 1);
+                        parent.swapChildren(i, i - 1);
                         updateVisualEditor();
                         updatePreview(false);
                     });
@@ -355,9 +347,9 @@ class SignElement{
                     elUpp.classList.add("disabled");
                 }
 
-                if(this.allowFlytt && this.ownIndex + 1 < parent.children.length){
+                if(this.allowFlytt && i + 1 < parent.children.length){
                     elNed.addEventListener("click", () => {
-                        parent.swapChildren(this.ownIndex, this.ownIndex + 1);
+                        parent.swapChildren(i, i + 1);
                         updateVisualEditor();
                         updatePreview(false);
                     });
@@ -365,14 +357,13 @@ class SignElement{
                     elNed.classList.add("disabled");
                 }
 
-                elBtns.appendChild(elUpp);
-                elBtns.appendChild(elNed);
+                elBtns.append(elUpp, elNed);
             }
 
             elBtns.appendChild(createHTMLEl("div", "Ta bort", ["delelement"])).addEventListener("click", () => {
-                this.isDeleted = true;
+                parent.children.splice(i, 1);
+                updateVisualEditor();
                 updatePreview(false);
-                el.remove();
             });
         }
 
@@ -390,7 +381,6 @@ class SignElement{
             ch: SignElementOptions[] = [];
 
         this.children.forEach(c => {
-            if(c.isDeleted) return;
             if(c.nodeName === undefined)
                 ch.push(c.toJSON());
             else
@@ -492,8 +482,7 @@ modesBtn.addEventListener("click", () => {
 
 function updateVisualEditor(){
     // visuell redigering
-    visels.innerHTML = "";
-    visels.appendChild(root.generateVis(0, null));
+    visels.replaceChildren(root.generateVis(0, 0, null));
 }
 
 function updatePreview(updateCodeBox: boolean){
@@ -518,7 +507,7 @@ function updatePreview(updateCodeBox: boolean){
 data_input.addEventListener("change", () => {
     try{
         let parsed: SignElementOptions = JSON.parse(data_input.value);
-        root = new SignElement(parsed, null, 0, false);
+        root = new SignElement(parsed, null, false);
         let visMode = visels.classList.contains("visible");
         updatePreview(!visMode);
 
