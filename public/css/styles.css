@@ -127,7 +127,7 @@ body, html{
                 color .1s;
 }
 
-#modes > div.active, #openfile, #savefile, #svgexp{
+#modes > div.active, #openfile, #savefile, #svgexp, #pngexp{
     color: #000 !important;
     background-color: #fff !important;
     border-width: 1px !important;
@@ -151,7 +151,7 @@ body, html{
     border: 1px solid #aaa;
     border-radius: 3px;
     margin: 2px;
-    max-width: max(200px, calc(100% - 143px));
+    max-width: max(200px, calc(100% - 167px));
     text-overflow: ellipsis;
 }
 
@@ -201,7 +201,7 @@ h3{
     margin: 9px 0 5px 0;
 }
 
-.elementknappar > div:hover, #mode:hover, #selectTemplate:hover, #openfile:hover, #savefile:hover, #svgexp:hover{
+.elementknappar > div:hover, #mode:hover, #selectTemplate:hover, #openfile:hover, #savefile:hover, #svgexp:hover, #pngexp:hover{
     filter: brightness(0.9);
 }
 
@@ -320,7 +320,7 @@ h3{
     font-family: monospace;
 }
 
-#openfile, #savefile, #svgexp{
+#openfile, #savefile, #svgexp, #pngexp{
     float: left;
     margin: 2px;
     width: 18px;

@@ -420,7 +420,8 @@ let data_input = document.getElementById("input") as HTMLTextAreaElement, fr = d
     visModeBtn = document.getElementById("vismode") as HTMLElement,
     saveBtn = document.querySelector("#savefile") as HTMLElement,
     openBtn = document.querySelector("#valjfil") as HTMLInputElement,
-    svgBtn = document.querySelector("#svgexp") as HTMLElement;
+    svgBtn = document.querySelector("#svgexp") as HTMLElement,
+    pngBtn = document.querySelector("#pngexp") as HTMLElement;
 
 let root: SignElement;
 
@@ -436,33 +437,36 @@ openBtn.addEventListener("change", () => {
 let prevObjUrl: string | undefined = undefined;
 const win: any = window.URL ?? window.webkitURL;
 
-function createFileDownload(linkElement: HTMLAnchorElement, data: string, mimeType: string, fileExt: string): boolean{
+function downloadFile(data: Blob, fileExt: string): void{
     if(!!prevObjUrl) win.revokeObjectURL(prevObjUrl);
     let namn = prompt("Filnamn (utan tillägg):", "min-skylt");
-    if(namn === null) return false;
+    if(namn === null) return;
 
-    linkElement.setAttribute("href", prevObjUrl = win.createObjectURL(new Blob([data], {type: mimeType})));
+    let linkElement = document.createElement("a");
+    linkElement.setAttribute("href", prevObjUrl = win.createObjectURL(data));
     linkElement.setAttribute("download", `${namn.replace(/[\x00-\x1f"\<\>\|\b\0\t\*\?\:\x7f]/g, "")}.${fileExt}`);
-    return true;
+    linkElement.click();
 }
 
 saveBtn.addEventListener("click", () => {
     let data = JSON.stringify(root.toJSON());
-    let btnLink = document.createElement("a");
-    if(createFileDownload(btnLink, data, "text/plain", "sk.json")){
-        btnLink.click();
-    }
+    downloadFile(new Blob([data], {type: "text/plain"}), "sk.json");
 }, {capture: true});
 
 svgBtn.addEventListener("click", () => {
     renderer.renderToSVG(root.toJSON()).then(svg => {
         let data = svg.genSVG(true);
-        let btnLink = document.createElement("a");
-        if(createFileDownload(btnLink, data, "image/svg+xml", "svg")){
-            btnLink.click();
-        }
+        downloadFile(new Blob([data], {type: "image/svg+xml"}), "svg");
     });
 }, {capture: true});
+
+pngBtn.addEventListener("click", () => {
+    renderer.render(root.toJSON()).then(img => {
+        img.toBlob(blob => {
+            if(blob != null) downloadFile(blob, "png")
+        }, "image/png");
+    });
+});
 
 modesBtn.addEventListener("click", () => {
     let visMode = visels.classList.toggle("visible");
