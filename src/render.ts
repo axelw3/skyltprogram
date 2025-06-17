@@ -437,10 +437,13 @@ openBtn.addEventListener("change", () => {
 let prevObjUrl: string | undefined = undefined;
 const win: any = window.URL ?? window.webkitURL;
 
+let lastNamn = "min-skylt";
+
 function downloadFile(data: Blob, fileExt: string): void{
     if(!!prevObjUrl) win.revokeObjectURL(prevObjUrl);
-    let namn = prompt("Filnamn (utan tillägg):", "min-skylt");
+    let namn = prompt("Filnamn (utan tillägg):", lastNamn);
     if(namn === null) return;
+    lastNamn = namn;
 
     let linkElement = document.createElement("a");
     linkElement.setAttribute("href", prevObjUrl = win.createObjectURL(data));
